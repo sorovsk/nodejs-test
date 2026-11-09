@@ -1,0 +1,20 @@
+//event.js 文件
+var events = require('events'); 
+var emitter = new events.EventEmitter(); 
+emitter.on('someEvent', function(arg1, arg2) { 
+        console.log('listener1', arg1, arg2); 
+}); 
+emitter.on('someEvent', function(arg1, arg2) { 
+        console.log('listener2', arg1, arg2); 
+}); 
+emitter.on('someEvent', function(arg1, arg2) { 
+        console.log('listener3', arg1, arg2); 
+}); 
+emitter.emit('someEvent', 'arg1 参数', 'arg2 参数');
+
+emitter.on('error', (err) => {
+  console.error('Error event triggered:', err);
+});
+
+emitter.emit('error', new Error('Something went wrong'));
+// 打印: Error event triggered: Error: Something went wrong
